@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { APIService, CreateUserInput, User } from 'src/app/API.service';
+import { APIService, Blog, CreateBlogInput } from 'src/app/API.service';
 
 @Component({
   selector: 'app-home',
@@ -8,25 +8,21 @@ import { APIService, CreateUserInput, User } from 'src/app/API.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  user: User | undefined;
-  users: User[] | undefined;
+  blogs: Blog[] | undefined;
   createForm: FormGroup;
 
   constructor(private api: APIService, private fb: FormBuilder) {
     this.createForm = this.fb.group({
-      email: ['', Validators.required],
-      userName: ['', Validators.required],
+      name: ['', Validators.required],
     });
   }
 
   async ngOnInit() {
-    this.user = await this.api.GetUser('1');
-
-    this.users = (await this.api.ListUsers()).items as User[];
+    this.blogs = (await this.api.ListBlogs()).items as Blog[];
   }
 
-  async createUser(user: CreateUserInput) {
-    await this.api.CreateUser(user);
+  async createBlog(blog: CreateBlogInput) {
+    await this.api.CreateBlog(blog);
     this.createForm.reset();
   }
 }
