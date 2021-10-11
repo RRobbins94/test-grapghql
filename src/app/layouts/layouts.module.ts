@@ -7,20 +7,20 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { CoreModule } from '../core/core.module';
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [NavbarComponent, PageLayoutComponent],
   imports: [
     CommonModule,
-    CoreModule,
     AppRoutingModule,
     MatToolbarModule,
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    FlexLayoutModule,
   ],
 })
 export class LayoutsModule {}

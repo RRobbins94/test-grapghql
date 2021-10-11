@@ -8,28 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
   menuItems: any[] = [
     {
-      label: 'Sign Up',
-      icon: 'login',
-    },
-    {
-      label: 'About',
-      icon: 'help',
-    },
-    {
-      label: 'Pricing',
-      icon: 'attach_money',
-    },
-    {
-      label: 'Docs',
-      icon: 'notes',
-    },
-    {
-      label: 'Showcase',
-      icon: 'slideshow',
-    },
-    {
-      label: 'Blog',
-      icon: 'rss_feed',
+      label: 'Home',
+      icon: 'home',
     },
   ];
 

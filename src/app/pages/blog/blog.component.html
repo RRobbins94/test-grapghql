@@ -1,14 +1,14 @@
 <div fxFlex fxLayout="column" fxLayoutGap="80px">
   <div fxLayout="column">
-    <h1 fxFlex>Blogs</h1>
+    <h1 fxFlex>Posts</h1>
     <div fxFlex fxLayout="row wrap" fxLayoutGap="10px grid">
-      <div fxFlex="30" fxFlex.xs="100" *ngFor="let blog of blogs">
-        <mat-card fxFlex fxLayout="column" (click)="openBlog(blog)">
+      <div fxFlex="30" fxFlex.xs="100" *ngFor="let post of posts">
+        <mat-card fxFlex fxLayout="column">
           <mat-card-header fxFlex>
-            <mat-card-title>{{ blog.name }}</mat-card-title>
+            <mat-card-title>{{ post.title }}</mat-card-title>
           </mat-card-header>
           <mat-card-content>
-            <p>Date Created: {{ blog.createdAt | date }}</p>
+            <p>Date Created: {{ post.createdAt | date }}</p>
           </mat-card-content>
         </mat-card>
       </div>
@@ -16,7 +16,7 @@
   </div>
 
   <div fxLayout="column">
-    <h1 fxFlex>Create Blog</h1>
+    <h1 fxFlex>Create Post</h1>
     <div fxFlex fxLayout="row" fxLayoutGap="10px">
       <form
         fxFlex="30"
@@ -24,11 +24,11 @@
         fxLayout="column"
         autocomplete="off"
         [formGroup]="createForm"
-        (ngSubmit)="createBlog(createForm.value)"
+        (ngSubmit)="createPost(createForm.value)"
       >
         <mat-form-field>
-          <mat-label>Blog Name</mat-label>
-          <input matInput formControlName="name" autocomplete="off" />
+          <mat-label>Post Title</mat-label>
+          <input matInput formControlName="title" autocomplete="off" />
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit">Submit</button>
       </form>
