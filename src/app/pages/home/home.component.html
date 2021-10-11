@@ -1,0 +1,22 @@
+<h1>Single User</h1>
+<div>{{ user | json }}</div>
+
+<h1>List Users</h1>
+<div>{{ users | json }}</div>
+
+<h1>Create User</h1>
+<form
+  autocomplete="off"
+  [formGroup]="createForm"
+  (ngSubmit)="createUser(createForm.value)"
+>
+  <div>
+    <label>Email: </label>
+    <input type="text" formControlName="email" autocomplete="off" />
+  </div>
+  <div>
+    <label>UserName: </label>
+    <input type="text" formControlName="userName" autocomplete="off" />
+  </div>
+  <button type="submit">Submit</button>
+</form>
