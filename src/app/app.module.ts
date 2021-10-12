@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutsModule } from './layouts/layouts.module';
 import { CoreModule } from './core/core.module';
 import { CommonModule } from '@angular/common';
-import { BlogComponent } from './pages/blog/blog.component';
+import { BlogViewComponent } from './pages/blog/blog-view/blog-view.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -14,9 +14,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { BlogCreateComponent } from './pages/blog/blog-create/blog-create.component';
 
 @NgModule({
-  declarations: [AppComponent, BlogComponent, HomeComponent],
+  declarations: [AppComponent, BlogViewComponent, HomeComponent, BlogCreateComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -30,8 +32,9 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

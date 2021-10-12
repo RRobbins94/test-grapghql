@@ -24,10 +24,12 @@ export type __SubscriptionContainer = {
 export type CreateBlogInput = {
   id?: string | null;
   name: string;
+  createdAt?: string | null;
 };
 
 export type ModelBlogConditionInput = {
   name?: ModelStringInput | null;
+  createdAt?: ModelStringInput | null;
   and?: Array<ModelBlogConditionInput | null> | null;
   or?: Array<ModelBlogConditionInput | null> | null;
   not?: ModelBlogConditionInput | null;
@@ -76,8 +78,8 @@ export type Blog = {
   __typename: "Blog";
   id: string;
   name: string;
-  posts?: ModelPostConnection | null;
   createdAt: string;
+  posts?: ModelPostConnection | null;
   updatedAt: string;
 };
 
@@ -91,6 +93,7 @@ export type Post = {
   __typename: "Post";
   id: string;
   title: string;
+  content: string;
   blogID: string;
   blog?: Blog | null;
   comments?: ModelCommentConnection | null;
@@ -117,6 +120,7 @@ export type Comment = {
 export type UpdateBlogInput = {
   id: string;
   name?: string | null;
+  createdAt?: string | null;
 };
 
 export type DeleteBlogInput = {
@@ -126,11 +130,13 @@ export type DeleteBlogInput = {
 export type CreatePostInput = {
   id?: string | null;
   title: string;
+  content: string;
   blogID: string;
 };
 
 export type ModelPostConditionInput = {
   title?: ModelStringInput | null;
+  content?: ModelStringInput | null;
   blogID?: ModelIDInput | null;
   and?: Array<ModelPostConditionInput | null> | null;
   or?: Array<ModelPostConditionInput | null> | null;
@@ -156,6 +162,7 @@ export type ModelIDInput = {
 export type UpdatePostInput = {
   id: string;
   title?: string | null;
+  content?: string | null;
   blogID?: string | null;
 };
 
@@ -190,6 +197,7 @@ export type DeleteCommentInput = {
 export type ModelBlogFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
+  createdAt?: ModelStringInput | null;
   and?: Array<ModelBlogFilterInput | null> | null;
   or?: Array<ModelBlogFilterInput | null> | null;
   not?: ModelBlogFilterInput | null;
@@ -204,6 +212,7 @@ export type ModelBlogConnection = {
 export type ModelPostFilterInput = {
   id?: ModelIDInput | null;
   title?: ModelStringInput | null;
+  content?: ModelStringInput | null;
   blogID?: ModelIDInput | null;
   and?: Array<ModelPostFilterInput | null> | null;
   or?: Array<ModelPostFilterInput | null> | null;
@@ -223,19 +232,20 @@ export type CreateBlogMutation = {
   __typename: "Blog";
   id: string;
   name: string;
+  createdAt: string;
   posts?: {
     __typename: "ModelPostConnection";
     items?: Array<{
       __typename: "Post";
       id: string;
       title: string;
+      content: string;
       blogID: string;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken?: string | null;
   } | null;
-  createdAt: string;
   updatedAt: string;
 };
 
@@ -243,19 +253,20 @@ export type UpdateBlogMutation = {
   __typename: "Blog";
   id: string;
   name: string;
+  createdAt: string;
   posts?: {
     __typename: "ModelPostConnection";
     items?: Array<{
       __typename: "Post";
       id: string;
       title: string;
+      content: string;
       blogID: string;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken?: string | null;
   } | null;
-  createdAt: string;
   updatedAt: string;
 };
 
@@ -263,19 +274,20 @@ export type DeleteBlogMutation = {
   __typename: "Blog";
   id: string;
   name: string;
+  createdAt: string;
   posts?: {
     __typename: "ModelPostConnection";
     items?: Array<{
       __typename: "Post";
       id: string;
       title: string;
+      content: string;
       blogID: string;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken?: string | null;
   } | null;
-  createdAt: string;
   updatedAt: string;
 };
 
@@ -283,16 +295,17 @@ export type CreatePostMutation = {
   __typename: "Post";
   id: string;
   title: string;
+  content: string;
   blogID: string;
   blog?: {
     __typename: "Blog";
     id: string;
     name: string;
+    createdAt: string;
     posts?: {
       __typename: "ModelPostConnection";
       nextToken?: string | null;
     } | null;
-    createdAt: string;
     updatedAt: string;
   } | null;
   comments?: {
@@ -315,16 +328,17 @@ export type UpdatePostMutation = {
   __typename: "Post";
   id: string;
   title: string;
+  content: string;
   blogID: string;
   blog?: {
     __typename: "Blog";
     id: string;
     name: string;
+    createdAt: string;
     posts?: {
       __typename: "ModelPostConnection";
       nextToken?: string | null;
     } | null;
-    createdAt: string;
     updatedAt: string;
   } | null;
   comments?: {
@@ -347,16 +361,17 @@ export type DeletePostMutation = {
   __typename: "Post";
   id: string;
   title: string;
+  content: string;
   blogID: string;
   blog?: {
     __typename: "Blog";
     id: string;
     name: string;
+    createdAt: string;
     posts?: {
       __typename: "ModelPostConnection";
       nextToken?: string | null;
     } | null;
-    createdAt: string;
     updatedAt: string;
   } | null;
   comments?: {
@@ -383,6 +398,7 @@ export type CreateCommentMutation = {
     __typename: "Post";
     id: string;
     title: string;
+    content: string;
     blogID: string;
     blog?: {
       __typename: "Blog";
@@ -411,6 +427,7 @@ export type UpdateCommentMutation = {
     __typename: "Post";
     id: string;
     title: string;
+    content: string;
     blogID: string;
     blog?: {
       __typename: "Blog";
@@ -439,6 +456,7 @@ export type DeleteCommentMutation = {
     __typename: "Post";
     id: string;
     title: string;
+    content: string;
     blogID: string;
     blog?: {
       __typename: "Blog";
@@ -463,19 +481,20 @@ export type GetBlogQuery = {
   __typename: "Blog";
   id: string;
   name: string;
+  createdAt: string;
   posts?: {
     __typename: "ModelPostConnection";
     items?: Array<{
       __typename: "Post";
       id: string;
       title: string;
+      content: string;
       blogID: string;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken?: string | null;
   } | null;
-  createdAt: string;
   updatedAt: string;
 };
 
@@ -485,11 +504,15 @@ export type ListBlogsQuery = {
     __typename: "Blog";
     id: string;
     name: string;
+    createdAt: string;
     posts?: {
       __typename: "ModelPostConnection";
       nextToken?: string | null;
+      items?: Array<{
+        __typename: "Post";
+        title: string;
+      } | null> | null;
     } | null;
-    createdAt: string;
     updatedAt: string;
   } | null> | null;
   nextToken?: string | null;
@@ -499,16 +522,17 @@ export type GetPostQuery = {
   __typename: "Post";
   id: string;
   title: string;
+  content: string;
   blogID: string;
   blog?: {
     __typename: "Blog";
     id: string;
     name: string;
+    createdAt: string;
     posts?: {
       __typename: "ModelPostConnection";
       nextToken?: string | null;
     } | null;
-    createdAt: string;
     updatedAt: string;
   } | null;
   comments?: {
@@ -533,6 +557,7 @@ export type ListPostsQuery = {
     __typename: "Post";
     id: string;
     title: string;
+    content: string;
     blogID: string;
     blog?: {
       __typename: "Blog";
@@ -559,6 +584,7 @@ export type GetCommentQuery = {
     __typename: "Post";
     id: string;
     title: string;
+    content: string;
     blogID: string;
     blog?: {
       __typename: "Blog";
@@ -589,6 +615,7 @@ export type ListCommentsQuery = {
       __typename: "Post";
       id: string;
       title: string;
+      content: string;
       blogID: string;
       createdAt: string;
       updatedAt: string;
@@ -604,19 +631,20 @@ export type OnCreateBlogSubscription = {
   __typename: "Blog";
   id: string;
   name: string;
+  createdAt: string;
   posts?: {
     __typename: "ModelPostConnection";
     items?: Array<{
       __typename: "Post";
       id: string;
       title: string;
+      content: string;
       blogID: string;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken?: string | null;
   } | null;
-  createdAt: string;
   updatedAt: string;
 };
 
@@ -624,19 +652,20 @@ export type OnUpdateBlogSubscription = {
   __typename: "Blog";
   id: string;
   name: string;
+  createdAt: string;
   posts?: {
     __typename: "ModelPostConnection";
     items?: Array<{
       __typename: "Post";
       id: string;
       title: string;
+      content: string;
       blogID: string;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken?: string | null;
   } | null;
-  createdAt: string;
   updatedAt: string;
 };
 
@@ -644,19 +673,20 @@ export type OnDeleteBlogSubscription = {
   __typename: "Blog";
   id: string;
   name: string;
+  createdAt: string;
   posts?: {
     __typename: "ModelPostConnection";
     items?: Array<{
       __typename: "Post";
       id: string;
       title: string;
+      content: string;
       blogID: string;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken?: string | null;
   } | null;
-  createdAt: string;
   updatedAt: string;
 };
 
@@ -664,16 +694,17 @@ export type OnCreatePostSubscription = {
   __typename: "Post";
   id: string;
   title: string;
+  content: string;
   blogID: string;
   blog?: {
     __typename: "Blog";
     id: string;
     name: string;
+    createdAt: string;
     posts?: {
       __typename: "ModelPostConnection";
       nextToken?: string | null;
     } | null;
-    createdAt: string;
     updatedAt: string;
   } | null;
   comments?: {
@@ -696,16 +727,17 @@ export type OnUpdatePostSubscription = {
   __typename: "Post";
   id: string;
   title: string;
+  content: string;
   blogID: string;
   blog?: {
     __typename: "Blog";
     id: string;
     name: string;
+    createdAt: string;
     posts?: {
       __typename: "ModelPostConnection";
       nextToken?: string | null;
     } | null;
-    createdAt: string;
     updatedAt: string;
   } | null;
   comments?: {
@@ -728,16 +760,17 @@ export type OnDeletePostSubscription = {
   __typename: "Post";
   id: string;
   title: string;
+  content: string;
   blogID: string;
   blog?: {
     __typename: "Blog";
     id: string;
     name: string;
+    createdAt: string;
     posts?: {
       __typename: "ModelPostConnection";
       nextToken?: string | null;
     } | null;
-    createdAt: string;
     updatedAt: string;
   } | null;
   comments?: {
@@ -764,6 +797,7 @@ export type OnCreateCommentSubscription = {
     __typename: "Post";
     id: string;
     title: string;
+    content: string;
     blogID: string;
     blog?: {
       __typename: "Blog";
@@ -792,6 +826,7 @@ export type OnUpdateCommentSubscription = {
     __typename: "Post";
     id: string;
     title: string;
+    content: string;
     blogID: string;
     blog?: {
       __typename: "Blog";
@@ -820,6 +855,7 @@ export type OnDeleteCommentSubscription = {
     __typename: "Post";
     id: string;
     title: string;
+    content: string;
     blogID: string;
     blog?: {
       __typename: "Blog";
@@ -853,19 +889,20 @@ export class APIService {
           __typename
           id
           name
+          createdAt
           posts {
             __typename
             items {
               __typename
               id
               title
+              content
               blogID
               createdAt
               updatedAt
             }
             nextToken
           }
-          createdAt
           updatedAt
         }
       }`;
@@ -889,19 +926,20 @@ export class APIService {
           __typename
           id
           name
+          createdAt
           posts {
             __typename
             items {
               __typename
               id
               title
+              content
               blogID
               createdAt
               updatedAt
             }
             nextToken
           }
-          createdAt
           updatedAt
         }
       }`;
@@ -925,19 +963,20 @@ export class APIService {
           __typename
           id
           name
+          createdAt
           posts {
             __typename
             items {
               __typename
               id
               title
+              content
               blogID
               createdAt
               updatedAt
             }
             nextToken
           }
-          createdAt
           updatedAt
         }
       }`;
@@ -961,16 +1000,17 @@ export class APIService {
           __typename
           id
           title
+          content
           blogID
           blog {
             __typename
             id
             name
+            createdAt
             posts {
               __typename
               nextToken
             }
-            createdAt
             updatedAt
           }
           comments {
@@ -1009,16 +1049,17 @@ export class APIService {
           __typename
           id
           title
+          content
           blogID
           blog {
             __typename
             id
             name
+            createdAt
             posts {
               __typename
               nextToken
             }
-            createdAt
             updatedAt
           }
           comments {
@@ -1057,16 +1098,17 @@ export class APIService {
           __typename
           id
           title
+          content
           blogID
           blog {
             __typename
             id
             name
+            createdAt
             posts {
               __typename
               nextToken
             }
-            createdAt
             updatedAt
           }
           comments {
@@ -1109,6 +1151,7 @@ export class APIService {
             __typename
             id
             title
+            content
             blogID
             blog {
               __typename
@@ -1153,6 +1196,7 @@ export class APIService {
             __typename
             id
             title
+            content
             blogID
             blog {
               __typename
@@ -1197,6 +1241,7 @@ export class APIService {
             __typename
             id
             title
+            content
             blogID
             blog {
               __typename
@@ -1234,19 +1279,20 @@ export class APIService {
           __typename
           id
           name
+          createdAt
           posts {
             __typename
             items {
               __typename
               id
               title
+              content
               blogID
               createdAt
               updatedAt
             }
             nextToken
           }
-          createdAt
           updatedAt
         }
       }`;
@@ -1270,11 +1316,15 @@ export class APIService {
             __typename
             id
             name
+            createdAt
             posts {
               __typename
               nextToken
+              items {
+                __typename
+                title
+              }
             }
-            createdAt
             updatedAt
           }
           nextToken
@@ -1301,16 +1351,17 @@ export class APIService {
           __typename
           id
           title
+          content
           blogID
           blog {
             __typename
             id
             name
+            createdAt
             posts {
               __typename
               nextToken
             }
-            createdAt
             updatedAt
           }
           comments {
@@ -1349,6 +1400,7 @@ export class APIService {
             __typename
             id
             title
+            content
             blogID
             blog {
               __typename
@@ -1392,6 +1444,7 @@ export class APIService {
             __typename
             id
             title
+            content
             blogID
             blog {
               __typename
@@ -1436,6 +1489,7 @@ export class APIService {
               __typename
               id
               title
+              content
               blogID
               createdAt
               updatedAt
@@ -1471,19 +1525,20 @@ export class APIService {
           __typename
           id
           name
+          createdAt
           posts {
             __typename
             items {
               __typename
               id
               title
+              content
               blogID
               createdAt
               updatedAt
             }
             nextToken
           }
-          createdAt
           updatedAt
         }
       }`
@@ -1501,19 +1556,20 @@ export class APIService {
           __typename
           id
           name
+          createdAt
           posts {
             __typename
             items {
               __typename
               id
               title
+              content
               blogID
               createdAt
               updatedAt
             }
             nextToken
           }
-          createdAt
           updatedAt
         }
       }`
@@ -1531,19 +1587,20 @@ export class APIService {
           __typename
           id
           name
+          createdAt
           posts {
             __typename
             items {
               __typename
               id
               title
+              content
               blogID
               createdAt
               updatedAt
             }
             nextToken
           }
-          createdAt
           updatedAt
         }
       }`
@@ -1561,16 +1618,17 @@ export class APIService {
           __typename
           id
           title
+          content
           blogID
           blog {
             __typename
             id
             name
+            createdAt
             posts {
               __typename
               nextToken
             }
-            createdAt
             updatedAt
           }
           comments {
@@ -1603,16 +1661,17 @@ export class APIService {
           __typename
           id
           title
+          content
           blogID
           blog {
             __typename
             id
             name
+            createdAt
             posts {
               __typename
               nextToken
             }
-            createdAt
             updatedAt
           }
           comments {
@@ -1645,16 +1704,17 @@ export class APIService {
           __typename
           id
           title
+          content
           blogID
           blog {
             __typename
             id
             name
+            createdAt
             posts {
               __typename
               nextToken
             }
-            createdAt
             updatedAt
           }
           comments {
@@ -1691,6 +1751,7 @@ export class APIService {
             __typename
             id
             title
+            content
             blogID
             blog {
               __typename
@@ -1729,6 +1790,7 @@ export class APIService {
             __typename
             id
             title
+            content
             blogID
             blog {
               __typename
@@ -1767,6 +1829,7 @@ export class APIService {
             __typename
             id
             title
+            content
             blogID
             blog {
               __typename

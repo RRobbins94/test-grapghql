@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   private subscription: Subscription | null = null;
   createForm: FormGroup;
   blogs: Array<Blog> = [];
+  showCreateForm: boolean = false;
 
   constructor(
     private api: APIService,
@@ -20,12 +21,12 @@ export class HomeComponent implements OnInit {
     private router: Router
   ) {
     this.createForm = this.fb.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(5)]],
     });
   }
 
   async ngOnInit() {
-    this.blogs = (await this.api.ListBlogs()).items as Blog[];
+    this.blogs = (await this.api.ListBlogs(undefined, 5)).items as Blog[];
 
     this.subscription = <Subscription>this.api.OnCreateBlogListener.subscribe(
       (event: any) => {
@@ -38,6 +39,7 @@ export class HomeComponent implements OnInit {
   async createBlog(blog: CreateBlogInput) {
     await this.api.CreateBlog(blog);
     this.createForm.reset();
+    this.showCreateForm = !this.showCreateForm;
   }
 
   openBlog(blog: Blog): void {

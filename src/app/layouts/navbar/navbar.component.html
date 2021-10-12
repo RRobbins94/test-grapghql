@@ -1,11 +1,6 @@
 <mat-toolbar fxLayout="row" color="primary">
   <span fxFlex>GraphQL and AppSync Demo</span>
-  <button
-    [routerLink]="'/home'"
-    mat-button
-    *ngFor="let item of menuItems"
-    fxHide.xs
-  >
+  <button [routerLink]="'/home'" mat-button *ngFor="let item of menuItems" fxHide.xs>
     <mat-icon class="mr">{{ item.icon }}</mat-icon>
     {{ item.label }}
   </button>

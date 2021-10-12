@@ -6,17 +6,18 @@ mutation CreateBlog(
   createBlog(input: $input, condition: $condition) {
     id
     name
+    createdAt
     posts {
       items {
         id
         title
+        content
         blogID
         createdAt
         updatedAt
       }
       nextToken
     }
-    createdAt
     updatedAt
   }
 }
@@ -27,17 +28,18 @@ mutation UpdateBlog(
   updateBlog(input: $input, condition: $condition) {
     id
     name
+    createdAt
     posts {
       items {
         id
         title
+        content
         blogID
         createdAt
         updatedAt
       }
       nextToken
     }
-    createdAt
     updatedAt
   }
 }
@@ -48,17 +50,18 @@ mutation DeleteBlog(
   deleteBlog(input: $input, condition: $condition) {
     id
     name
+    createdAt
     posts {
       items {
         id
         title
+        content
         blogID
         createdAt
         updatedAt
       }
       nextToken
     }
-    createdAt
     updatedAt
   }
 }
@@ -69,14 +72,15 @@ mutation CreatePost(
   createPost(input: $input, condition: $condition) {
     id
     title
+    content
     blogID
     blog {
       id
       name
+      createdAt
       posts {
         nextToken
       }
-      createdAt
       updatedAt
     }
     comments {
@@ -100,14 +104,15 @@ mutation UpdatePost(
   updatePost(input: $input, condition: $condition) {
     id
     title
+    content
     blogID
     blog {
       id
       name
+      createdAt
       posts {
         nextToken
       }
-      createdAt
       updatedAt
     }
     comments {
@@ -131,14 +136,15 @@ mutation DeletePost(
   deletePost(input: $input, condition: $condition) {
     id
     title
+    content
     blogID
     blog {
       id
       name
+      createdAt
       posts {
         nextToken
       }
-      createdAt
       updatedAt
     }
     comments {
@@ -165,6 +171,7 @@ mutation CreateComment(
     post {
       id
       title
+      content
       blogID
       blog {
         id
@@ -193,6 +200,7 @@ mutation UpdateComment(
     post {
       id
       title
+      content
       blogID
       blog {
         id
@@ -221,6 +229,7 @@ mutation DeleteComment(
     post {
       id
       title
+      content
       blogID
       blog {
         id

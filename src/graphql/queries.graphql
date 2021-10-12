@@ -3,17 +3,18 @@ query GetBlog($id: ID!) {
   getBlog(id: $id) {
     id
     name
+    createdAt
     posts {
       items {
         id
         title
+        content
         blogID
         createdAt
         updatedAt
       }
       nextToken
     }
-    createdAt
     updatedAt
   }
 }
@@ -26,10 +27,13 @@ query ListBlogs(
     items {
       id
       name
+      createdAt
       posts {
         nextToken
+        items {
+          title
+        }
       }
-      createdAt
       updatedAt
     }
     nextToken
@@ -39,14 +43,15 @@ query GetPost($id: ID!) {
   getPost(id: $id) {
     id
     title
+    content
     blogID
     blog {
       id
       name
+      createdAt
       posts {
         nextToken
       }
-      createdAt
       updatedAt
     }
     comments {
@@ -72,6 +77,7 @@ query ListPosts(
     items {
       id
       title
+      content
       blogID
       blog {
         id
@@ -95,6 +101,7 @@ query GetComment($id: ID!) {
     post {
       id
       title
+      content
       blogID
       blog {
         id
@@ -125,6 +132,7 @@ query ListComments(
       post {
         id
         title
+        content
         blogID
         createdAt
         updatedAt

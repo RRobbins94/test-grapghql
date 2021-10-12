@@ -3,17 +3,18 @@ subscription OnCreateBlog {
   onCreateBlog {
     id
     name
+    createdAt
     posts {
       items {
         id
         title
+        content
         blogID
         createdAt
         updatedAt
       }
       nextToken
     }
-    createdAt
     updatedAt
   }
 }
@@ -21,17 +22,18 @@ subscription OnUpdateBlog {
   onUpdateBlog {
     id
     name
+    createdAt
     posts {
       items {
         id
         title
+        content
         blogID
         createdAt
         updatedAt
       }
       nextToken
     }
-    createdAt
     updatedAt
   }
 }
@@ -39,17 +41,18 @@ subscription OnDeleteBlog {
   onDeleteBlog {
     id
     name
+    createdAt
     posts {
       items {
         id
         title
+        content
         blogID
         createdAt
         updatedAt
       }
       nextToken
     }
-    createdAt
     updatedAt
   }
 }
@@ -57,14 +60,15 @@ subscription OnCreatePost {
   onCreatePost {
     id
     title
+    content
     blogID
     blog {
       id
       name
+      createdAt
       posts {
         nextToken
       }
-      createdAt
       updatedAt
     }
     comments {
@@ -85,14 +89,15 @@ subscription OnUpdatePost {
   onUpdatePost {
     id
     title
+    content
     blogID
     blog {
       id
       name
+      createdAt
       posts {
         nextToken
       }
-      createdAt
       updatedAt
     }
     comments {
@@ -113,14 +118,15 @@ subscription OnDeletePost {
   onDeletePost {
     id
     title
+    content
     blogID
     blog {
       id
       name
+      createdAt
       posts {
         nextToken
       }
-      createdAt
       updatedAt
     }
     comments {
@@ -144,6 +150,7 @@ subscription OnCreateComment {
     post {
       id
       title
+      content
       blogID
       blog {
         id
@@ -169,6 +176,7 @@ subscription OnUpdateComment {
     post {
       id
       title
+      content
       blogID
       blog {
         id
@@ -194,6 +202,7 @@ subscription OnDeleteComment {
     post {
       id
       title
+      content
       blogID
       blog {
         id

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageLayoutComponent } from './layouts/page-layout/page-layout.component';
-import { BlogComponent } from './pages/blog/blog.component';
+import { BlogCreateComponent } from './pages/blog/blog-create/blog-create.component';
+import { BlogViewComponent } from './pages/blog/blog-view/blog-view.component';
 import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
@@ -14,17 +15,22 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path: 'blog/:id',
-        component: BlogComponent,
+        path: 'blog/create',
+        component: BlogCreateComponent,
       },
+      {
+        path: 'blog/:id',
+        component: BlogViewComponent,
+      },
+
     ],
   },
 
-  { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

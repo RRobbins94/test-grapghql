@@ -1,0 +1,59 @@
+<div fxFlex fxLayout="column" fxLayoutGap="30px">
+  <section fxLayout="row">
+    <a [routerLink]="'home'" title="return" mat-button fxLayoutAlign="center center">
+      <mat-icon fxFlex>arrow_back</mat-icon>
+    </a>
+    <h1>{{ blog?.name }}</h1>
+  </section>
+
+  <section>
+    <button mat-button fxLayout="row" (click)="showCreateForm = !showCreateForm">
+      <mat-icon>add</mat-icon>
+      Create Post
+    </button>
+  </section>
+
+  <section fxLayout="column" *ngIf="showCreateForm">
+    <h1 fxFlex>Create Post</h1>
+    <div fxFlex fxLayout="row" fxLayoutGap="10px">
+      <form fxFlex="30" fxFlex.xs="100" fxLayout="column" autocomplete="off" [formGroup]="createForm"
+        (ngSubmit)="createPost(createForm.value)">
+        <mat-form-field>
+          <mat-label>Post Title</mat-label>
+          <input matInput formControlName="title" autocomplete="off" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Post Content</mat-label>
+          <textarea matInput formControlName="content" autocomplete="off"></textarea>
+        </mat-form-field>
+        <button [disabled]="createForm.invalid" mat-raised-button color="primary" type="submit">
+          Submit
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <section fxLayout="column">
+    <div fxFlex fxLayout="row wrap" fxLayoutGap="10px grid">
+      <div fxFlex="30" fxFlex.xs="100" *ngFor="let post of posts">
+        <mat-card fxFlex fxLayout="column">
+          <mat-card-header fxFlex>
+            <mat-card-title>{{ post.title }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ post?.content }}</p>
+            <p>Date Created: {{ post.createdAt | date }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button (click)="deletePost(post)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+</div>

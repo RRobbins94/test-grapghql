@@ -1,37 +1,44 @@
-<div fxFlex fxLayout="column" fxLayoutGap="80px">
-  <div fxLayout="column">
-    <h1 fxFlex>Blogs</h1>
+<div fxFlex fxLayout="column" fxLayoutGap="30px">
+  <h1 fxFlex>Welcome to GraphQL and AppSync Demo</h1>
+
+  <section>
+    <button mat-button fxLayout="row" [routerLink]="['../blog/create']">
+      <mat-icon>add</mat-icon>
+      Create Blog
+    </button>
+  </section>
+
+  <section fxLayout="column" *ngIf="showCreateForm">
+    <h1 fxFlex>Create Blog</h1>
+    <div fxFlex fxLayout="row" fxLayoutGap="10px">
+      <form fxFlex="30" fxFlex.lt-sm="100" fxLayout="column" autocomplete="off" [formGroup]="createForm"
+        (ngSubmit)="createBlog(createForm.value)">
+        <mat-form-field>
+          <mat-label>Blog Name</mat-label>
+          <input matInput formControlName="name" autocomplete="off" />
+        </mat-form-field>
+        <button [disabled]="!createForm.valid" mat-raised-button color="primary" type="submit">
+          Submit
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <section fxLayout="column">
     <div fxFlex fxLayout="row wrap" fxLayoutGap="10px grid">
-      <div fxFlex="30" fxFlex.xs="100" *ngFor="let blog of blogs">
-        <mat-card fxFlex fxLayout="column" (click)="openBlog(blog)">
+      <div fxFlex="30" fxFlex.lt-sm="100" *ngFor="let blog of blogs">
+        <mat-card class="mat-card-hover" fxFlex fxLayout="column" (click)="openBlog(blog)">
           <mat-card-header fxFlex>
             <mat-card-title>{{ blog.name }}</mat-card-title>
           </mat-card-header>
           <mat-card-content>
+            <div *ngFor="let post of blog.posts?.items">
+              <p>{{ post?.title }}</p>
+            </div>
             <p>Date Created: {{ blog.createdAt | date }}</p>
           </mat-card-content>
         </mat-card>
       </div>
     </div>
-  </div>
-
-  <div fxLayout="column">
-    <h1 fxFlex>Create Blog</h1>
-    <div fxFlex fxLayout="row" fxLayoutGap="10px">
-      <form
-        fxFlex="30"
-        fxFlex.xs="100"
-        fxLayout="column"
-        autocomplete="off"
-        [formGroup]="createForm"
-        (ngSubmit)="createBlog(createForm.value)"
-      >
-        <mat-form-field>
-          <mat-label>Blog Name</mat-label>
-          <input matInput formControlName="name" autocomplete="off" />
-        </mat-form-field>
-        <button mat-raised-button color="primary" type="submit">Submit</button>
-      </form>
-    </div>
-  </div>
+  </section>
 </div>
